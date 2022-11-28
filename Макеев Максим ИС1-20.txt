@@ -1,0 +1,298 @@
+//часть 1
+//задача 1
+select * from tabllitsi.products;
+//задача 2
+select prod_name
+from tabllitsi.products;
+//задача 3
+select prod_name, prod_price, prod_id
+from tabllitsi.products;
+//задача 4
+select distinct vend_id 
+from tabllitsi.products;
+//задача 5
+select prod_name
+from tabllitsi.products limit 5;
+//задача 6
+select prod_name
+from tabllitsi.products limit 5
+offset 2;
+//задача 7
+select prod_name
+from tabllitsi.products limit 5
+offset 4;
+//задача 8
+select prod_name
+from tabllitsi.products
+order by prod_name asc;
+// задача 9
+select prod_name, prod_price 
+from tabllitsi.products
+order by prod_price, prod_name asc;
+// задача 10
+select  prod_id, prod_name, prod_price 
+from tabllitsi.products
+order by prod_price desc;
+// 11
+select  prod_id, prod_name, prod_price 
+from tabllitsi.products
+order by prod_price desc, prod_name asc;
+// 12
+select concat (vend_name, vend_country)
+from tabllitsi.vendors;
+//12.1
+select  vend_name || vend_country
+from tabllitsi.vendors;
+//13
+select concat (vend_name, vend_country)
+as "Наименеование(Место нахождения)"
+from tabllitsi.vendors;
+//13.1
+select vend_name || vend_country
+as "Наименеование(Место нахождения)"
+from tabllitsi.vendors;
+//14
+select prod_id, quantity, item_price
+from tabllitsi.orderitems;
+//15
+select  prod_id, quantity, item_price*quantity as "EXPANDED_price"
+from tabllitsi.orderitems;
+// 16
+select concat(vend_name, vend_country) as "Наименование(место нахождения)", char_length(concat(vend_name, vend_country)) as"количество символов"
+from tabllitsi.vendors;
+//16.1
+select vend_name || vend_country as "Наименование(место нахождения)", character_length(concat(vend_name, vend_country)) as"количество символов"
+from tabllitsi.vendors;
+//16.2
+select concat (vend_name, vend_country)as "Наименование(место нахождения)", length(concat(vend_name, vend_country)) as"количество символов"
+from tabllitsi.vendors;
+//17
+select initcap(note_text)
+from tabllitsi.productnotes;
+//18
+select lower(prod_id) 
+from tabllitsi.products;
+//19
+select concat(vend_name, vend_country) 
+as "Наименование(место нахождения)", upper(concat(vend_name, vend_country)) as "регистр"
+from tabllitsi.vendors;
+//19.2
+select concat(vend_name, vend_country) 
+as "Наименование(место нахождения)", concat(upper(vend_name), upper(vend_country) ) as "регистр"
+from tabllitsi.vendors;
+//20
+insert into products (prod_id,prod_desc) 
+values (' pe_er ',' wdq '), ('pr_exi',' ewef ');
+select prod_desc, ltrim(prod_desc) as "Результат"
+from products;
+//20.1
+select prod_desc, trim(leading prod_desc) as "Результат" 
+from tabllitsi.products;
+//21
+select prod_desc,
+rtrim(prod_desc) as "Результат"
+from tabllitsi."products";
+// часть 2
+//22
+select prod_desc,
+trim(leading 'T' from prod_desc)
+as "результат"
+from tabllitsi.products;
+//23
+select prod_desc,
+ltrim(prod_desc, 'Jet') 
+as "результат"
+from tabllitsi.products;
+//23.1
+select prod_desc,
+trim(leading 'Jet' from prod_desc) 
+as "результат"
+from tabllitsi.products;
+//24
+select prod_desc,
+ltrim(prod_desc, 'Jet' || 't' || 'S' || '.') 
+as "результат"
+from tabllitsi.products;
+//24.1
+select prod_desc,
+trim(leading 'Jet' || 't' || 'S' || '.' from prod_desc) 
+as "результат"
+from tabllitsi.products;
+//25
+select prod_desc,
+rtrim(prod_desc, 'e') as "результат"
+from tabllitsi.products;
+//25.1
+select prod_desc,
+trim(trailing 'e' from prod_desc) 
+as "результат"
+from tabllitsi.products;
+//26
+select prod_desc,
+rtrim(prod_desc, 'ook')
+as "результат"
+from tabllitsi.products;
+//26.1
+select prod_desc,
+trim(trailing 'ook' from prod_desc) 
+as "результат"
+from tabllitsi.products;
+//27
+select prod_desc, 
+rtrim(products.prod_desc, 'e'||'l'||'k'||'g')
+as "результат"
+from tabllitsi.products;
+//27.1
+select prod_desc, 
+trim(trailing 'e'||'l'||'k'||'g' from products.prod_desc)
+as  "результат"
+from tabllitsi.products;
+//28
+select prod_desc, 
+overlay (products.prod_desc placing 'YYY' from 4 for 3)
+as "результат"
+from tabllitsi.products;
+//29
+select position ('A' in vend_city)
+as "позиция"
+from tabllitsi.vendors;
+//29.1
+select vend_city, strpos(vend_city ,'A')
+as "позиция"
+from vendors;
+//30
+select position ('Str' in vend_address)
+as "позиция"
+from vendors
+order by "позиция" asc;
+//30.1
+select strpos(vend_address, 'Str') 
+as "позиция"
+from vendors
+order by "позиция" asc;
+//31
+select note_text, substring(note_text from 13 for 22) 
+as "результат"
+from productnotes;
+//31.1
+select note_text, substr(note_text,13, 22) 
+as "результат"
+from productnotes;
+//32
+select note_text, left(note_text, 22) 
+as "результат"
+from productnotes;
+//33
+select note_text, left(note_text, -22) 
+as "результат"
+from productnotes;
+//34
+select note_text, right (note_text, 14) 
+as "результат"
+from productnotes;
+//35
+select note_text, right (note_text, -17) 
+as "результат"
+from productnotes;
+//36
+select repeat (vend_name, 3) 
+as "повтор"
+from vendors;
+//37
+select reverse(vend_name) 
+as "ревёрс"
+from vendors;
+//38
+select 
+split_part(cust_email,'@', 1) as "часть 1",
+split_part(cust_email,'@', 2) as "часть 2"
+from customers;
+//39
+select 
+split_part(cust_mane ,' ', 1) as "часть 1",
+split_part(cust_mane,' ', 2) as "часть 2"
+from customers;
+//40
+select age (timestamp '2022-10-23', timestamp '1812-08-03');
+//41
+select age (order_date)  
+as "интервал"
+from orders;
+//42
+select current_date;
+//42.1
+select current_timestamp;
+//43
+select current_time;
+//часть 3
+//44
+select now();
+//45
+select order_date,
+date_part('year', order_date) as "год"
+from orders;
+//46
+select order_date,
+date_part('month', order_date) as "месяц"
+from orders;
+//47
+select order_date,
+date_part('day', order_date) as "день"
+from orders;
+//48
+select date_part('hours', timestamp'2020-06-30 02:36:24')
+//49
+select date_part('min', timestamp'2020-06-30 02:36:24')
+//50
+select date_part('sec', timestamp'2020-06-30 02:36:24')
+//51
+select date_part('year', timestamp'2021-12-31 12:48:17') as "год",
+date_part('month', timestamp'2021-12-31 12:48:17') as "месяц",
+date_part('day', timestamp'2021-12-31 12:48:17') as "день",
+date_part('hour', timestamp'2021-12-31 12:48:17') as "час",
+date_part('min', timestamp'2021-12-31 12:48:17') as "минута",
+date_part('sec', timestamp'2021-12-31 12:48:17') as "секунда";
+//52
+select age (order_date)
+as "интервал",
+date_part('year', age (order_date)) as "год"
+from orders;
+//53
+select age (order_date)
+as "интервал",
+date_part('month', age (order_date)) as "год"
+from orders;
+//54
+select age (order_date)
+as "интервал",
+date_part('day', age (order_date)) as "год"
+from orders;
+//55
+select age(timestamp '1855-04-25 09:56:34') as "интервал",
+date_part('hour', age(timestamp '1855-04-25 09:56:34'))  as "час",
+date_part('min', age(timestamp '1855-04-25 09:56:34'))  as "минута",
+date_part('sec', age(timestamp '1855-04-25 09:56:34'))  as "секунда";
+//56
+select order_date,
+date_trunc('year', order_date) as "результат"
+from orders;
+//57
+select order_date,
+date_trunc('month', order_date) as "результат"
+from orders;
+//58
+select order_date,
+date_trunc('day', order_date) as "результат"
+from orders;
+//59
+select date_trunc('hour', timestamp '2015-05-26 16:36:42.258') 
+as "результат";
+//60
+select date_trunc('min', timestamp '2015-05-26 16:36:42.258') 
+as "результат";
+//61
+select date_trunc('s', timestamp '2015-05-26 16:36:42.258') 
+as "результат";
+//62.1
+select (note_id,'/',prod_id,'/',note_date)
+from productnotes;
